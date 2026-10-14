@@ -18,12 +18,14 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          submodules: false
 
       - name: Fetch Mbed OS and libraries
         run: |
           rm -rf mbed-os mod_rbms_lib
           git clone https://github.com/ARMmbed/mbed-os.git --depth 1 -b mbed-os-6.17.0
-          git clone https://github.com/Shaoryu/mod_rbms_lib.git mod_rbms_lib --depth 1
+          git clone https://github.com/Shaoryu/mod_rbms_lib.git mod_rbms_lib --depth 1 -b unified
 
       - name: Build application
         run: |
